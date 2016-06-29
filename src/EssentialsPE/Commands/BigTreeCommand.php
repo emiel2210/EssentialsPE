@@ -10,20 +10,19 @@ use pocketmine\Player;
 use pocketmine\utils\TextFormat;
 
 class BigTreeCommand extends BaseCommand{
-    /**
-     * @param BaseAPI $api
-     */
+    
+     @param BaseAPI $api
+     
     public function __construct(BaseAPI $api){
         parent::__construct($api, "bigtree", "Spawns a big tree", "<tree|redwood|jungle>", false);
         $this->setPermission("essentials.bigtree");
     }
 
-    /**
-     * @param CommandSender $sender
-     * @param string $alias
-     * @param array $args
-     * @return bool
-     */
+     @param CommandSender $sender
+     @param string $alias
+     @param array $args
+     @return bool
+     
     public function execute(CommandSender $sender, $alias, array $args): bool{
         if(!$this->testPermission($sender)){
             return false;
@@ -36,15 +35,15 @@ class BigTreeCommand extends BaseCommand{
             $this->sendUsage($sender, $alias);
             return false;
         }
-        #$transparent = [];
+        $transparent = [];
         $block = $sender->getTargetBlock(100, BaseAPI::NON_SOLID_BLOCKS);
-        /*while(!$block->isSolid){
+        while(!$block->isSolid){
             if($block === null){
                 break;
             }
             $transparent[] = $block->getID();
             $block = $sender->getTargetBlock(100, $transparent);
-        }*/
+        }
         if($block === null){
             $sender->sendMessage(TextFormat::RED . "There isn't a reachable block");
             return false;
